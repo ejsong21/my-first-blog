@@ -6,5 +6,5 @@ from django.shortcuts import render
 # render메서드를 호출한다.
 # 이 함수는 호출하여 받은 (return) blog/post_list.html 템플릿을 보여준다.
 def post_list(request):
-    return render(request, 'blog/post_list.html', {})
+    return render(request, 'blog/post_list2.html', {})
     
