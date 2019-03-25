@@ -23,4 +23,6 @@ urlpatterns = [
     # main url('')로 blog.urls를 가져온다.
     url(r'', include('blog.urls')),
     
+
+    
 ]
