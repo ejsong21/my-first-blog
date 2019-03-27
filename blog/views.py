@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Post
 from django.shortcuts import render,redirect, get_object_or_404
 from .forms import PostForm
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 import logging
 
@@ -43,8 +43,9 @@ def post_new(request):
             # User객체로 author를 넣어야 한다고 자꾸 에러가 남..그래서 강제로 포스트 할 유저를 넣음.
             # me = User.objects.get(username='eunji.song') //이것도 같은 에러야.
             
+            User.objects.all()
             # User객체를 생성
-            User = get_user_model()
+            #User = get_user_model()
             # post.author = me
             post.author = User.objects.get(username='eunji.song')
             
