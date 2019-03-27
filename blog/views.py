@@ -29,7 +29,8 @@ def post_detail(request, pk):
 
 # 포스트 입력하는 폼    
 def post_new(request):
-    logging.info("-------------------------■post_new1 request.method : "+ request.method)
+    logging.error("-------------------------■post_new1 request.method : "+ request.method)
+    print("-------------------------■request.user : "+ str(request.user))
     # 포스트 저장하기
     if request.method == "POST":
          form = PostForm(request.POST)
@@ -45,7 +46,7 @@ def post_new(request):
     
 # 포스트 수정하기
 def post_edit(request, pk):
-    logging.error("-------------------------post_edit1"+ request.method)
+    logging.error("-------------------------■post_edit1"+ request.method)
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         # if request is not post, initialize an empty form
