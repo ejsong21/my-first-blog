@@ -45,7 +45,9 @@ def post_new(request):
             
             # User객체를 생성
             User = get_user_model()
-            post.author = User.objects.get(username='eunji.song')
+            me = User.objects.get(username='eunji.song')
+            post.author = me
+            # post.author = request.me
             
             post.published_date = timezone.now()
             post.save()
