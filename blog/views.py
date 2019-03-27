@@ -33,7 +33,7 @@ def post_detail(request, pk):
 def post_new(request):
     logging.error("-------------------------■post_new1 request.method : "+ request.method)
     print("-------------------------■get user : " + str(get_user_model()))
-    print("-------------------------■request.user : "+ str(request.user))
+    print("-------------------------■request.user : "+ str(get_user_model().objects.get(username='eunji.song')))
     # 포스트 저장하기
     if request.method == "POST":
          form = PostForm(request.POST)
@@ -45,9 +45,8 @@ def post_new(request):
             
             # User객체를 생성
             User = get_user_model()
-            me = User.objects.get(username='eunji.song')
-            post.author = me
-            # post.author = request.me
+            # post.author = me
+            post.author = User.objects.get(username='eunji.song')
             
             post.published_date = timezone.now()
             post.save()
