@@ -3,7 +3,8 @@ from django.utils import timezone
 from .models import Post
 from django.shortcuts import render,redirect, get_object_or_404
 from .forms import PostForm
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 import logging
 
 # Create your views here.
@@ -31,16 +32,21 @@ def post_detail(request, pk):
 # 포스트 입력하는 폼    
 def post_new(request):
     logging.error("-------------------------■post_new1 request.method : "+ request.method)
+    print("-------------------------■get user : " + str(get_user_model()))
     print("-------------------------■request.user : "+ str(request.user))
     # 포스트 저장하기
     if request.method == "POST":
          form = PostForm(request.POST)
          if form.is_valid():
             post = form.save(commit=False)
-            # User객체로 author를 넣어야 한다고 자꾸 에러가 남..그래서 강제로 포스트 할 유저를 넣음.
-            me = User.objects.get(username='eunji.song')
             # post.author = request.user
-            post.author = me
+            # User객체로 author를 넣어야 한다고 자꾸 에러가 남..그래서 강제로 포스트 할 유저를 넣음.
+            # me = User.objects.get(username='eunji.song') //이것도 같은 에러야.
+            
+            # User객체를 생성
+            User = get_user_model()
+            post.author = User.objects.get(username='eunji.song')
+            
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
