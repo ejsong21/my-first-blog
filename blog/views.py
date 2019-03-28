@@ -18,34 +18,33 @@ import logging
 
 # 리스트
 def post_list(request):
-    logging.info("-------------------------post_list1")
+    logging.info("-------------------------■post_list")
     #posts = Post.objects.filter(published_date__lte = timezone.now()).order_by('published_date')
     posts = Post.objects.all()
     return render(request, 'blog/post_list2.html', {'posts':posts})
 
 # 포스트 상세 내용
 def post_detail(request, pk):
-    logging.info("-------------------------post_detail1")
+    logging.error("-------------------------■post_detail")
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post':post})
 
 # 포스트 입력하는 폼    
 def post_new(request):
-    logging.error("-------------------------■post_new1 request.method : "+ request.method)
-    print("-------------------------■get user : " + str(get_user_model()))
-    print("-------------------------■request.user : "+ str(get_user_model().objects.get(username='eunji.song')))
+    logging.error("-------------------------■post_new request.method : "+ request.method)
+    logging.error("-------------------------・get user : " + str(get_user_model()))
+    logging.error("-------------------------・request.user : "+ str(get_user_model().objects.get(username='eunji.song')))
     # 포스트 저장하기
     if request.method == "POST":
          form = PostForm(request.POST)
          if form.is_valid():
             post = form.save(commit=False)
             # post.author = request.user
-            # User객체로 author를 넣어야 한다고 자꾸 에러가 남..그래서 강제로 포스트 할 유저를 넣음.
-            # me = User.objects.get(username='eunji.song') //이것도 같은 에러야.
+            # User객체로 author를 넣어야 한다고 에러남
             
             User.objects.all()
             # User객체를 생성
-            #User = get_user_model()
+            # User = get_user_model()
             # post.author = me
             post.author = User.objects.get(username='eunji.song')
             
@@ -58,7 +57,9 @@ def post_new(request):
     
 # 포스트 수정하기
 def post_edit(request, pk):
-    logging.error("-------------------------■post_edit1"+ request.method)
+    logging.error("-------------------------■post_edit request.method"+ request.method)
+    logging.error("-------------------------・get user : " + str(get_user_model()))
+    logging.error("-------------------------・request.user : "+ str(get_user_model().objects.get(username='eunji.song')))
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         # if request is not post, initialize an empty form
