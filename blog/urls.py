@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.urls import path
-from django.conf.urls import url
-from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
@@ -9,7 +7,11 @@ urlpatterns = [
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new', views.post_new, name='post_new'),
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
-        # WARNING:django.request:Not Found: /favicon.ico를 피하기 위해
-    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),
-
+    path('post/<pk>/puslish/', views.post_publish, name='post_publish'),
+    path('post/<pk>/remove/', views.post_remove, name='post_remove'),
+    path('drafts/', views.post_draft_list, name='post_draft_list'),
+    path('post/<int:pk>/publish/', views.post_publish, name='post_publish'),
+    path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
+    path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
 ]
