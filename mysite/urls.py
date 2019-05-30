@@ -25,4 +25,7 @@ urlpatterns = [
 
     # main url('')로 blog.urls를 가져온다.
     path('', include('blog.urls')),
+
+    # path('kilogram', include('kilogram.urls')),
+    # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

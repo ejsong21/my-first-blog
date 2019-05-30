@@ -22,6 +22,10 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
+    # cover = models.ImageField(upload_to='images/')
+    profile_pic = models.ImageField(upload_to="blog/profile_pic")
+    photo = models.ImageField(blank=True, upload_to="blog/%Y/%m/%d")
+
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -50,7 +54,22 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+
+class Photo(models.Model):
+    title = models.CharField (max_length = 150)
+    comment = models.TextField (blank = True)
+    image = models.ImageField (upload_to = 'photos')
+    created_at = models.DateTimeField (auto_now = True)
+
+    def __str__(self):
+        return self.title
+
 '''
+class item(models.Model):
+    purchase_url = models.URLField('product URL'), max_length=400, black=True)
+    image_file = models.ImageField('product image'), upload_to='items', black=True)
+
+
 class Work(models.Model):
     #作品モデル
     class Meta:

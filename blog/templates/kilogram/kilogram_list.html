@@ -1,0 +1,12 @@
+{% extends 'kilogram/base.html' %}
+{% block content %}
+
+<h1>Kilogram Main Page</h1>
+<form method='post' action='' enctype="multipart/form-data">
+  {% scrf_token %}
+  <table>
+    {{ forms.as_table }}
+  </table>
+  <imput type="submit">
+
+{% endblock %}

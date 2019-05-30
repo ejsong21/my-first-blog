@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    #'posts.apps.PostsConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,5 +119,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+
+# 업로드 할 경로
 MEDIA_URL = '/media/'
+# 로컬 디렉토리에 어디에 저장할지
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
