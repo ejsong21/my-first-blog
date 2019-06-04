@@ -22,10 +22,6 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
-    # cover = models.ImageField(upload_to='images/')
-    profile_pic = models.ImageField(upload_to="blog/profile_pic")
-    photo = models.ImageField(blank=True, upload_to="blog/%Y/%m/%d")
-
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
